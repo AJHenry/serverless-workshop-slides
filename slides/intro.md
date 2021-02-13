@@ -59,7 +59,7 @@ GraphQL does _not_ define how or where data is stored though, just how it is acc
 
 ## Architecture
 
-<img src="/images/gql-arch.png" />
+<img src="images/gql-arch.png" />
 <p class="text-sm flex flex-end -8">via<a href="https://nordicapis.com/serverless-graphql-architecture-with-graphcool/" class="px-1"> Nordic API</a></p>
 
 ---
