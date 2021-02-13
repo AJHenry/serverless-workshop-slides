@@ -187,19 +187,41 @@ function hello() {
 
 GraphQL is strongly typed, so the server knows exactly what to send and the client always knows what they are getting
 
+<p class="flex flex-start text-2xl">Schema</p>
+
 ```gql
+type NutritionFacts {
+  id: ID!
+  calories: Int
+}
+
 type Ingredient {
   id: ID!
   name: String!
+  nutrition: NutritionFacts
 }
 ```
+
+_ID is a special type, but it's value is a string_
+
+--
+
+Notice how all of the response types match exactly what the schema told us
+
+<p class="flex flex-start text-2xl">Response</p>
 
 ```json
 {
   "id": "5d1947c7-f347-4691-98a5-81e540bad172",
-  "name": "chicken"
+  "name": "chicken breast",
+  "nutrition": {
+    "id": "1f1f8361-f9ae-4ada-8852-dbfa49cd3b8c",
+    "calories": 231
+  }
 }
 ```
+
+This makes GraphQL a self-documenting API too!
 
 --
 
@@ -531,3 +553,46 @@ The schema validator will throw an error if you do!
 ```error
 Error: The type of RecipeInput must be Input Type
 ```
+
+---
+
+# Summary
+
+## 1. Create your Schema
+
+This establishes the contract between your server and the clients it serves
+
+- Schemas are strongly typed, so you must be explicit
+- You can nest types to create complex objects
+- You can add parameters to your fields
+
+--
+
+## 2. Make your Resolvers
+
+Resolvers fulfill the data that is defined on the fields
+
+- The data that is returned from the resolver must match the types of the schema
+- The GraphQL server will remove any fields that the user didn't request
+- Your resolvers can be from any data source
+
+--
+
+## 3. Fetch your Data
+
+Fetch and update data from your server with queries and mutations 
+
+- Use `query` for fetching data and `mutation` for adding/updating data
+- The server will only send back the fields that you request
+- The response will be the same shape of the request
+- You can use the GraphQL Playground to generate queries that your clients can use
+
+--
+
+## Additional Topics
+
+Here are some additional topics for learning more about GQL
+
+- `Fragments` - Fragments let you construct reusable sets of fields, and then include them in queries where you need to
+- `Directives` - Affect executions of queries dynamically with modifiers like `@skip(if: Boolean)`
+- `Meta fields` - For advanced typing
