@@ -177,7 +177,7 @@ type Query {
 
 ```typescript
 function hello() {
-  return 'world';
+  return "world";
 }
 ```
 
@@ -399,4 +399,135 @@ query FindChickenRecipes {
     title
   }
 }
+```
+
+--
+
+## SubParameters
+
+You can also add parameters to fields on types
+
+_This query doubles the recipe_
+
+```gql
+query DoubleRecipes {
+  recipes {
+    title
+    ingredients(multiply: 2) {
+      name
+      amount
+      unit
+    }
+  }
+}
+```
+
+The `ingredient` field can take an optional parameter `multiply` to multiply the ingredient amounts
+
+---
+
+## Updating Data
+
+`Mutations` are how a client can update and write data to a GQL server
+
+<p class="flex flex-start text-2xl">Mutation</p>
+
+```gql
+mutation UpdateRecipe {
+  updateRecipe(
+    id: "4f145adf-6aaa-4c78-8c45-459a57ed4fad"
+    data: { title: "Garlic Honey Glazed Salmon" }
+  ) {
+    id
+    title
+  }
+}
+```
+
+Mutations follow the same syntax of queries but with 1 difference
+
+_Notice the `mutation` keyword instead of `query`_
+
+<!--
+<p class="flex flex-start text-2xl">Response</p>
+
+```json
+{
+  "data": {
+    "updateRecipe": {
+      "id": "4f145adf-6aaa-4c78-8c45-459a57ed4fad",
+      "title": "Garlic Honey Glazed Salmon"
+    }
+  }
+}
+``` -->
+
+--
+
+That means you can also use variables within your `Mutations` fields!
+
+```gql
+mutation UpdateRecipe {
+  updateRecipe(
+    id: "4f145adf-6aaa-4c78-8c45-459a57ed4fad"
+    data: { title: "Garlic Honey Glazed Salmon" }
+  ) {
+    id
+    title
+    ingredients(multiply: 3) {
+      amount
+      unit
+    }
+  }
+}
+```
+
+However, while query fields are executed in parallel, mutation fields run in series, one after the other
+
+--
+
+## Special Input Type
+
+`Mutations` use a special `Input` type to tell what data a server can accept
+
+<p class="flex flex-start text-2xl">Schema</p>
+
+```gql
+input RecipeInput {
+  title: String
+  description: String
+  ingredients: [ID]
+  steps: [String]
+  nutrition: ID
+  duration: DurationInput
+  yield: Int
+}
+
+type Mutation {
+  updateRecipe(id: ID, data: RecipeInput): Recipe
+}
+```
+
+--
+
+You _cannot_ use return types for mutation fields
+
+```gql
+type RecipeInput {
+  title: String
+  description: String
+}
+
+type Mutation {
+  updateRecipe(id: ID, data: RecipeInput): Recipe
+}
+```
+
+<br/>
+<br/>
+
+The schema validator will throw an error if you do!
+
+```error
+Error: The type of RecipeInput must be Input Type
 ```
