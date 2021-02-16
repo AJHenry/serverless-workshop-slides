@@ -19,7 +19,7 @@ Andrew Henry
 </div>
 
 <div class="flex flex-col px-4 items-center">
-<img src="images/andrew.jpg" class="w-40"/>
+<img src="images/nick.png" class="w-40"/>
 Nick Smider
 <p class="text-lg">Software Engineer</p>
 </div>
@@ -61,6 +61,19 @@ GraphQL does _not_ define how or where data is stored though, just how it is acc
 
 <img src="images/gql-arch.png" />
 <p class="text-sm flex flex-end -8">via<a href="https://nordicapis.com/serverless-graphql-architecture-with-graphcool/" class="px-1"> Nordic API</a></p>
+
+--
+
+## Test Environment
+
+```bash
+git clone https://github.com/AJHenry/serverless-workshop.git
+```
+
+Run locally or follow [deployemnt instructions](https://ajhenry.github.io/serverless-workshop/#/deploy)
+
+Optionally, we already deployed it for you!\
+Play around [here](https://l3oc26mxg8.execute-api.us-east-1.amazonaws.com/dev/graphql)
 
 ---
 
@@ -596,3 +609,79 @@ Here are some additional topics for learning more about GQL
 - `Fragments` - Fragments let you construct reusable sets of fields, and then include them in queries where you need to
 - `Directives` - Affect executions of queries dynamically with modifiers like `@skip(if: Boolean)`
 - `Meta fields` - For advanced typing
+
+---
+
+# Why go Serverless?
+
+--
+
+## Where REST Shines Again
+
+With a typical REST Api, we could have different services handle different endpoints
+
+Service A
+```bash
+https://api.myapp.com/students/{studentId}
+```
+
+Service B
+```bash
+https://api.myapp.com/classes/{classId}
+```
+
+Having different services handle different endpoints can make load distribution easier.
+
+--
+
+## GraphQL Complicates Things
+
+With GraphQL, we only ever have one endpoint that accepts queries and mutations for our schemas.
+
+```bash
+https://api.myapp.com/graphql
+```
+
+--
+
+## Scaling
+
+The problem we need to solve is how we can scale our single GraphQL endpoint efficiently. 
+
+Serverless functions scale to the exact size you need at any given time and integrate well with many cloud provider's API Gateway implementations. 
+
+What would this architecture look like?
+
+-- 
+
+## AWS Example
+
+<img class="bg-white" src="images/aws-arch.png" />
+<p class="text-sm flex flex-end -8">via<a href="https://www.serverless.com/blog/running-scalable-reliable-graphql-endpoint-with-serverless" class="px-1"> Serverless </a></p>
+
+--
+
+## Cost Benefits
+
+When running servers, you pay for every second they are up and running.
+
+When leveraging serverless functions, you pay for invocation time and if you aren't recieving traffic, you won't be charged.
+
+--
+
+## Real Costs
+
+|           |  Lambda 512mb   |   t2.nano EC2 512mb |
+|-----------|:---------------:|--------------------:|
+| Requests  |   10,760,000    |   inf               |
+| Uptime    |   100ms/request |   ~1 month          |
+| Cost      |   $4.25         |   $4.25             |
+
+Try it yourself:
+* [Lambda Cost Calculator](https://dashbird.io/lambda-cost-calculator/)
+* [EC2 Cost Calculator](https://calculator.s3.amazonaws.com/index.html)
+-- 
+
+## Take Advantage of Resources
+
+Additionally, some providers like AWS provide free tier resources. AWS Lambda provides ["1M free requests per month and 400,000 GB-seconds of compute time per month,"](https://aws.amazon.com/lambda/pricing/) making it a great option for projects and experiments.
