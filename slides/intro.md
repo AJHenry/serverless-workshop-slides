@@ -682,8 +682,14 @@ When leveraging serverless functions, you pay for invocation time and if you are
 Try it yourself:
 
 - [Lambda Cost Calculator](https://dashbird.io/lambda-cost-calculator/)
-- ## [EC2 Cost Calculator](https://calculator.s3.amazonaws.com/index.html)
+- [EC2 Cost Calculator](https://calculator.s3.amazonaws.com/index.html)
+
+--
 
 ## Take Advantage of Resources
 
 Additionally, some providers like AWS provide free tier resources. AWS Lambda provides ["1M free requests per month and 400,000 GB-seconds of compute time per month,"](https://aws.amazon.com/lambda/pricing/) making it a great option for projects and experiments.
+
+---
+
+Thanks!
