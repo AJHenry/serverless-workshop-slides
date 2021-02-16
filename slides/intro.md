@@ -62,6 +62,19 @@ GraphQL does _not_ define how or where data is stored though, just how it is acc
 <img src="images/gql-arch.png" />
 <p class="text-sm flex flex-end -8">via<a href="https://nordicapis.com/serverless-graphql-architecture-with-graphcool/" class="px-1"> Nordic API</a></p>
 
+--
+
+## Test Environment
+
+```bash
+git clone https://github.com/AJHenry/serverless-workshop.git
+```
+
+Run locally or follow [deployemnt instructions](https://ajhenry.github.io/serverless-workshop/#/deploy)
+
+Optionally, we already deployed it for you!\
+Play around [here](https://l3oc26mxg8.execute-api.us-east-1.amazonaws.com/dev/graphql)
+
 ---
 
 ## Fetching Data with REST
@@ -655,6 +668,19 @@ When running servers, you pay for every second they are up and running.
 When leveraging serverless functions, you pay for invocation time and if you aren't recieving traffic, you won't be charged.
 
 --
+
+## Real Costs
+
+|           |  Lambda 512mb   |   t2.nano EC2 512mb |
+|-----------|:---------------:|--------------------:|
+| Requests  |   10,760,000    |   inf               |
+| Uptime    |   100ms/request |   ~1 month          |
+| Cost      |   $4.25         |   $4.25             |
+
+Try it yourself:
+* [Lambda Cost Calculator](https://dashbird.io/lambda-cost-calculator/)
+* [EC2 Cost Calculator](https://calculator.s3.amazonaws.com/index.html)
+-- 
 
 ## Take Advantage of Resources
 
