@@ -70,7 +70,7 @@ GraphQL does _not_ define how or where data is stored though, just how it is acc
 git clone https://github.com/AJHenry/serverless-workshop.git
 ```
 
-Run locally or follow [deployemnt instructions](https://ajhenry.github.io/serverless-workshop/#/deploy)
+Run locally or follow [deployment instructions](https://ajhenry.github.io/serverless-workshop/#/deploy)
 
 Optionally, we already deployed it for you!\
 Play around [here](https://l3oc26mxg8.execute-api.us-east-1.amazonaws.com/dev/graphql)
@@ -163,7 +163,7 @@ Use the following URL to access the GraphQL playground
 <br/>
 
 ```
-http://localhost:3000/graphql
+https://l3oc26mxg8.execute-api.us-east-1.amazonaws.com/dev/graphql
 ```
 
 --
@@ -593,7 +593,7 @@ Resolvers fulfill the data that is defined on the fields
 
 ## 3. Fetch your Data
 
-Fetch and update data from your server with queries and mutations 
+Fetch and update data from your server with queries and mutations
 
 - Use `query` for fetching data and `mutation` for adding/updating data
 - The server will only send back the fields that you request
@@ -621,11 +621,13 @@ Here are some additional topics for learning more about GQL
 With a typical REST Api, we could have different services handle different endpoints
 
 Service A
+
 ```bash
 https://api.myapp.com/students/{studentId}
 ```
 
 Service B
+
 ```bash
 https://api.myapp.com/classes/{classId}
 ```
@@ -646,13 +648,13 @@ https://api.myapp.com/graphql
 
 ## Scaling
 
-The problem we need to solve is how we can scale our single GraphQL endpoint efficiently. 
+The problem we need to solve is how we can scale our single GraphQL endpoint efficiently.
 
-Serverless functions scale to the exact size you need at any given time and integrate well with many cloud provider's API Gateway implementations. 
+Serverless functions scale to the exact size you need at any given time and integrate well with many cloud provider's API Gateway implementations.
 
 What would this architecture look like?
 
--- 
+--
 
 ## AWS Example
 
@@ -671,16 +673,16 @@ When leveraging serverless functions, you pay for invocation time and if you are
 
 ## Real Costs
 
-|           |  Lambda 512mb   |   t2.nano EC2 512mb |
-|-----------|:---------------:|--------------------:|
-| Requests  |   10,760,000    |   inf               |
-| Uptime    |   100ms/request |   ~1 month          |
-| Cost      |   $4.25         |   $4.25             |
+|          | Lambda 512mb  | t2.nano EC2 512mb |
+| -------- | :-----------: | ----------------: |
+| Requests |  10,760,000   |               inf |
+| Uptime   | 100ms/request |          ~1 month |
+| Cost     |    \$4.25     |            \$4.25 |
 
 Try it yourself:
-* [Lambda Cost Calculator](https://dashbird.io/lambda-cost-calculator/)
-* [EC2 Cost Calculator](https://calculator.s3.amazonaws.com/index.html)
--- 
+
+- [Lambda Cost Calculator](https://dashbird.io/lambda-cost-calculator/)
+- ## [EC2 Cost Calculator](https://calculator.s3.amazonaws.com/index.html)
 
 ## Take Advantage of Resources
 
